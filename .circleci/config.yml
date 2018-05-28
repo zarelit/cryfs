@@ -37,14 +37,12 @@ references:
         sudo touch /etc/apt/sources.list.d/clang.list
         sudo chmod o+w /etc/apt/sources.list.d/clang.list
         cat > /etc/apt/sources.list.d/clang.list << EOF
-        deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.7 main
-        deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.7 main
-        deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.8 main
-        deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.8 main
         deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main
         deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-4.0 main
         deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main
         deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main
+        deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main
+        deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-6.0 main
         EOF
         sudo chmod o-w /etc/apt/sources.list.d/clang.list
 
@@ -253,6 +251,24 @@ jobs:
       APT_COMPILER_PACKAGE: "g++-7"
       CXXFLAGS: ""
       BUILD_TYPE: "Release"
+  gcc_8_debug:
+    <<: *job_definition
+    environment:
+      CC: gcc-8
+      CXX: g++-8
+      BUILD_TOOLSET: gcc
+      APT_COMPILER_PACKAGE: "g++-8"
+      CXXFLAGS: ""
+      BUILD_TYPE: "Debug"
+  gcc_8_release:
+    <<: *job_definition
+    environment:
+      CC: gcc-8
+      CXX: g++-8
+      BUILD_TOOLSET: gcc
+      APT_COMPILER_PACKAGE: "g++-8"
+      CXXFLAGS: ""
+      BUILD_TYPE: "Release"
   clang_4_0_debug:
     <<: *job_definition
     environment:
@@ -287,6 +303,24 @@ jobs:
       CXX: clang++-5.0
       BUILD_TOOLSET: clang
       APT_COMPILER_PACKAGE: clang-5.0
+      CXXFLAGS: ""
+      BUILD_TYPE: "Release"
+  clang_6_0_debug:
+    <<: *job_definition
+    environment:
+      CC: clang-6.0
+      CXX: clang++-6.0
+      BUILD_TOOLSET: clang
+      APT_COMPILER_PACKAGE: clang-6.0
+      CXXFLAGS: ""
+      BUILD_TYPE: "Debug"
+  clang_6_0_release:
+    <<: *job_definition
+    environment:
+      CC: clang-6.0
+      CXX: clang++-6.0
+      BUILD_TOOLSET: clang
+      APT_COMPILER_PACKAGE: clang-6.0
       CXXFLAGS: ""
       BUILD_TYPE: "Release"
   no_compatibility:
@@ -338,6 +372,10 @@ workflows:
         <<: *enable_for_tags
     - gcc_7_release:
         <<: *enable_for_tags
+    - gcc_8_debug:
+        <<: *enable_for_tags
+    - gcc_8_release:
+        <<: *enable_for_tags
     - clang_4_0_debug:
         <<: *enable_for_tags
     - clang_4_0_release:
@@ -345,6 +383,10 @@ workflows:
     - clang_5_0_debug:
         <<: *enable_for_tags
     - clang_5_0_release:
+        <<: *enable_for_tags
+    - clang_6_0_debug:
+        <<: *enable_for_tags
+    - clang_6_0_release:
         <<: *enable_for_tags
     - no_compatibility:
         <<: *enable_for_tags
