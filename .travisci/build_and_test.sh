@@ -25,9 +25,9 @@ make -j$NUMCORES
 ./test/blockstore/blockstore-test
 ./test/blobstore/blobstore-test
 ./test/cryfs/cryfs-test
+./test/cryfs-cli/cryfs-cli-test
 
 # TODO Also run on osx once fixed
 if [ "${TRAVIS_OS_NAME}" == "linux" ]; then
   ./test/fspp/fspp-test
-  ./test/cryfs-cli/cryfs-cli-test
 fi
