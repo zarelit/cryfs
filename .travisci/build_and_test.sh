@@ -14,7 +14,7 @@ fi
 # Note: This must be here and not in install.sh, because environment variables can't be passed between scripts.
 if [ "${TRAVIS_OS_NAME}" == "osx" ] && [ "${CXX}" = "g++" ]; then
   echo Switch to actual g++ and not just the AppleClang symlink
-  export CXX="g++-5" CC="gcc-5"
+  export CXX="g++-7" CC="gcc-7"
 else
   echo Do not switch to actual g++ because we are either not osx or not g++
 fi

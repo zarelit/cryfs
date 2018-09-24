@@ -12,7 +12,7 @@ if [ "${TRAVIS_OS_NAME}" == "osx" ] && [ "${CXX}" = "g++" ]; then
     # We need to uninstall oclint because it creates a /usr/local/include/c++ symlink that clashes with the gcc5 package
     # see https://github.com/Homebrew/homebrew-core/issues/21172
     brew cask uninstall oclint
-    brew install gcc5
+    brew install gcc@7
 fi
 
 if [ "${TRAVIS_OS_NAME}" == "osx" ]; then
