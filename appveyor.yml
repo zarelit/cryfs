@@ -17,6 +17,7 @@ configuration:
 version: '{branch}-{build}'
 
 environment:
+  PYTHON: "C:\\Python36-x64"
   CLCACHE_HARDLINK: 1
   # TODO CLCACHE_SERVER: 1
   CC: clcache
@@ -37,7 +38,7 @@ init:
 
 install:
   - choco install -y dokany --installargs ADDLOCAL=DokanDevFeature,DokanLibBFeature,DokanPDBFeature
-  - pip3 install clcache
+  - pip install clcache
   - cmake --version
 
 build_script:
