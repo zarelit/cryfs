@@ -17,10 +17,10 @@ configuration:
 version: '{branch}-{build}'
 
 environment:
-- CLCACHE_HARDLINK: 1
-# TODO CLCACHE_SERVER: 1
-- CC: clcache
-- CXX: clcache
+  CLCACHE_HARDLINK: 1
+  # TODO CLCACHE_SERVER: 1
+  CC: clcache
+  CXX: clcache
 
 
 init:
