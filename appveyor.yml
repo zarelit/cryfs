@@ -16,6 +16,13 @@ configuration:
 
 version: '{branch}-{build}'
 
+environment:
+- CLCACHE_HARDLINK: 1
+# TODO CLCACHE_SERVER: 1
+- CC: clcache
+- CXX: clcache
+
+
 init:
 - echo %NUMBER_OF_PROCESSORS%
 - echo %PLATFORM%
@@ -34,6 +41,10 @@ install:
   - cmake --version
 
 build_script:
+  - cmd: clcache -s
+  - cmd: clcache -M 536870912
+  # TODO Test that this directory is fixed, otherwise use CLCACHE_BASEDIR
+  - cmd: cd
   - cmd: mkdir build
   - cmd: cd build
   - cmd: cmake .. -G "%generator%" -DBUILD_TESTING=on -DBOOST_ROOT=C:\Libraries\boost_1_65_1 -DDOKAN_PATH="C:\Program Files\Dokan\DokanLibrary-1.1.0"
@@ -48,6 +59,7 @@ build_script:
   - cmd: .\test\cryfs\%CONFIGURATION%\cryfs-test.exe
   #- cmd: .\test\cryfs-cli\%CONFIGURATION%\cryfs-cli-test.exe
   #- cmd: cpack --verbose -G WIX
+   - cmd: clcache -s
 
 on_failure:
   - cmd: type C:\projects\cryfs\build\_CPack_Packages\win64\WIX\wix.log
