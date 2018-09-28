@@ -16,14 +16,6 @@ configuration:
 
 version: '{branch}-{build}'
 
-environment:
-  PYTHON: "C:\\Python36-x64"
-  CLCACHE_HARDLINK: 1
-  # TODO CLCACHE_SERVER: 1
-  CC: clcache
-  CXX: clcache
-
-
 init:
 - echo %NUMBER_OF_PROCESSORS%
 - echo %PLATFORM%
@@ -43,10 +35,12 @@ install:
   - cmake --version
 
 build_script:
-  - cmd: clcache -s
   - cmd: clcache -M 536870912
-  # TODO Test that this directory is fixed, otherwise use CLCACHE_BASEDIR
-  - cmd: cd
+  - cmd: clcache -s
+  - cmd: set CLCACHE_HARDLINK=1
+    # TODO CLCACHE_SERVER: 1
+  - cmd: set CC=clcache
+  - cmd: set CXX=clcache
   - cmd: mkdir build
   - cmd: cd build
   - cmd: cmake .. -G "%generator%" -DBUILD_TESTING=on -DBOOST_ROOT=C:\Libraries\boost_1_65_1 -DDOKAN_PATH="C:\Program Files\Dokan\DokanLibrary-1.1.0"
