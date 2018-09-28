@@ -37,12 +37,12 @@ init:
 - echo %generator%
 
 install:
-  - choco install -y dokany --installargs ADDLOCAL=DokanDevFeature,DokanLibBFeature,DokanPDBFeature
-  - dir "C:\\"
-  - dir "C:\\Python36-x64"
-  - dir "C:\\Python36-x64\\bin"
-  - pip install clcache
-  - cmake --version
+  - cmd: choco install -y dokany --installargs ADDLOCAL=DokanDevFeature,DokanLibBFeature,DokanPDBFeature
+  - cmd: dir C:
+  - cmd: dir C:\Python36-x64
+  - cmd: dir C:\Python36-x64\bin
+  - cmd: pip install clcache
+  - cmd: cmake --version
 
 build_script:
   - cmd: clcache -s
