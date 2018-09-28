@@ -37,7 +37,7 @@ init:
 
 install:
   - choco install -y dokany --installargs ADDLOCAL=DokanDevFeature,DokanLibBFeature,DokanPDBFeature
-  - pip install clcache
+  - pip3 install clcache
   - cmake --version
 
 build_script:
