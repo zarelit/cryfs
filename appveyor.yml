@@ -41,10 +41,10 @@ build_script:
     # TODO CLCACHE_SERVER: 1
   #- cmd: set CC=clcache
   #- cmd: set CXX=clcache
-  - cmd: move "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx86/x64/cl.exe" "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx86/x64/cl_original.exe"
-  - cmd: move "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx86/x64/cl.exe.config" "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx86/x64/cl_original.exe.config"
-  - cmd: set CLCACHE_CL="C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx86/x64/cl_original.exe"
-  - cmd: move "C:/Python36-x64/Scripts/clcache.exe" "C:/Program Files (x86)/Microsoft Visual Studio/2017/Community/VC/Tools/MSVC/14.15.26726/bin/Hostx86/x64/cl.exe"
+  - cmd: move "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.15.26726\\bin\\Hostx86\\x64\\cl.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.15.26726\\bin\\Hostx86\\x64\\cl_original.exe"
+  - cmd: move "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.15.26726\\bin\\Hostx86\\x64\\cl.exe.config" "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.15.26726\\bin\\Hostx86\\x64\\cl_original.exe.config"
+  - cmd: set CLCACHE_CL="C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.15.26726\\bin\\Hostx86\\x64\\cl_original.exe"
+  - cmd: move "C:\\Python36-x64\\Scripts\\clcache.exe" "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\\Tools\\MSVC\\14.15.26726\\bin\\Hostx86\\x64\\cl.exe"
   - cmd: mkdir build
   - cmd: cd build
   - cmd: cmake .. -G "%generator%" -DBUILD_TESTING=on -DCMAKE_C_COMPILER=invalid_clcache -DCMAKE_CXX_COMPILER=invalid_clcache -DBOOST_ROOT=C:\Libraries\boost_1_65_1 -DDOKAN_PATH="C:\Program Files\Dokan\DokanLibrary-1.1.0"
