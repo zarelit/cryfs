@@ -297,7 +297,7 @@ jobs:
       CXX: clang++-5.0
       BUILD_TOOLSET: clang
       APT_COMPILER_PACKAGE: clang-5.0
-      CXXFLAGS: "-D_LIBCPP_DEBUG=1"
+      CXXFLAGS: "-D_LIBCPP_DEBUG=1 -D_LIBCPP_ENABLE_NODISCARD=1 -D_LIBCPP_ENABLE_DEPRECATION_WARNINGS=1"
       BUILD_TYPE: "Debug"
   clang_5_release:
     <<: *job_definition
@@ -315,7 +315,7 @@ jobs:
       CXX: clang++-6.0
       BUILD_TOOLSET: clang
       APT_COMPILER_PACKAGE: clang-6.0
-      CXXFLAGS: "-D_LIBCPP_DEBUG=1"
+      CXXFLAGS: "-D_LIBCPP_DEBUG=1 -D_LIBCPP_ENABLE_NODISCARD=1 -D_LIBCPP_ENABLE_DEPRECATION_WARNINGS=1"
       BUILD_TYPE: "Debug"
   clang_6_release:
     <<: *job_definition
@@ -333,7 +333,7 @@ jobs:
       CXX: clang++-7
       BUILD_TOOLSET: clang
       APT_COMPILER_PACKAGE: clang-7
-      CXXFLAGS: "-D_LIBCPP_DEBUG=1"
+      CXXFLAGS: "-D_LIBCPP_DEBUG=1 -D_LIBCPP_ENABLE_NODISCARD=1 -D_LIBCPP_ENABLE_DEPRECATION_WARNINGS=1"
       BUILD_TYPE: "Debug"
   clang_7_release:
     <<: *job_definition
