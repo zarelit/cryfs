@@ -206,7 +206,7 @@ jobs:
       CXX: g++-5
       BUILD_TOOLSET: gcc
       APT_COMPILER_PACKAGE: "g++-5"
-      CXXFLAGS: ""
+      CXXFLAGS: "-D_GLIBCXX_DEBUG=1 -D_GLIBCXX_SANITIZE_VECTOR=1"
       BUILD_TYPE: "Debug"
   gcc_5_release:
     <<: *job_definition
@@ -224,7 +224,7 @@ jobs:
       CXX: g++-6
       BUILD_TOOLSET: gcc
       APT_COMPILER_PACKAGE: "g++-6"
-      CXXFLAGS: ""
+      CXXFLAGS: "-D_GLIBCXX_DEBUG=1 -D_GLIBCXX_SANITIZE_VECTOR=1"
       BUILD_TYPE: "Debug"
   gcc_6_release:
     <<: *job_definition
@@ -242,7 +242,7 @@ jobs:
       CXX: g++-7
       BUILD_TOOLSET: gcc
       APT_COMPILER_PACKAGE: "g++-7"
-      CXXFLAGS: ""
+      CXXFLAGS: "-D_GLIBCXX_DEBUG=1 -D_GLIBCXX_SANITIZE_VECTOR=1"
       BUILD_TYPE: "Debug"
   gcc_7_release:
     <<: *job_definition
@@ -260,7 +260,7 @@ jobs:
       CXX: g++-8
       BUILD_TOOLSET: gcc
       APT_COMPILER_PACKAGE: "g++-8"
-      CXXFLAGS: ""
+      CXXFLAGS: "-D_GLIBCXX_DEBUG=1 -D_GLIBCXX_SANITIZE_VECTOR=1"
       BUILD_TYPE: "Debug"
   gcc_8_release:
     <<: *job_definition
