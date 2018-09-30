@@ -80,6 +80,9 @@ TEST_P(DataTestWithSizeParam, Size) {
 }
 
 TEST_P(DataTestWithSizeParam, CheckStoredFile) {
+  int i = INT_MIN;
+  int j = -i;
+
   TempFile file;
   randomData.StoreToFile(file.path());
 
