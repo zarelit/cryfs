@@ -84,6 +84,8 @@ TEST_P(DataTestWithSizeParam, CheckStoredFile) {
   randomData.StoreToFile(file.path());
 
   EXPECT_STORED_FILE_DATA_CORRECT(randomData, file.path());
+
+  EXPECT_TRUE(false);
 }
 
 TEST_P(DataTestWithSizeParam, CheckLoadedData) {
