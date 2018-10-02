@@ -14,7 +14,7 @@ if(NOT DISABLE_OPENMP)
     else()
         find_package(OpenMP)
 
-        if(NOT OPENMP_FOUND)
+        if((NOT OPENMP_FOUND) AND (NOT OPENMP_CXX_FOUND)) # older cmake uses OPENMP_FOUND, newer cmake also sets OPENMP_CXX_FOUND, homebrew installations seem only to get the latter set.
             if((APPLE AND ((CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang") OR (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")))
                     AND ((CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL "7.0") AND (CMAKE_VERSION VERSION_LESS "3.12.0")))
                 # Workaround because older cmake on apple doesn't support FindOpenMP
@@ -39,6 +39,7 @@ if(NOT DISABLE_OPENMP)
             target_link_libraries(OpenMP_TARGET INTERFACE ${OpenMP_CXX_FLAGS} ${Additional_OpenMP_Libraries_Workaround})
         endif()
 
+        target_link_libraries(cryptopp PUBLIC ${OpenMP_CXX_FLAGS}) # Workaround for Ubuntu 18.04 that otherwise doesn't set -fopenmp for linking
         target_link_libraries(cryptopp PUBLIC OpenMP::OpenMP_CXX)
 
         # also add these flags to the third party Crypto++ build setup that is built in a subdirectory
