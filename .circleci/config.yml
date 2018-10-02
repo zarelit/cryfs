@@ -88,10 +88,10 @@ references:
     restore_cache:
       keys:
         # Find the most recent cache from any branch
-        - v2_upgrade_boost_cache_{{ checksum "/tmp/_build_env_vars" }}_{{ arch }}
+        - v3_upgrade_boost_cache_{{ checksum "/tmp/_build_env_vars" }}_{{ arch }}
   upgrade_boost_post: &upgrade_boost_post
     save_cache:
-      key: v2_upgrade_boost_cache_{{ checksum "/tmp/_build_env_vars" }}_{{ arch }}
+      key: v3_upgrade_boost_cache_{{ checksum "/tmp/_build_env_vars" }}_{{ arch }}
       paths:
       - /tmp/boost_1_56_0
   upgrade_boost: &upgrade_boost
