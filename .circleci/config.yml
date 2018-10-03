@@ -77,8 +77,10 @@ references:
         sudo cp -R /var/cache/apt/archives/* /tmp/aptcache/
         ls /tmp/aptcache > /tmp/_aptcache_contents
 
-        # tell the operating system to remove the file size limit on core dump files
+        # set up core dumps
         ulimit -c unlimited
+        mkdir -p /tmp/core_dumps
+        echo "/tmp/core_dumps/%p_%s_%c_%P" | sudo tee /proc/sys/kernel/core_pattern
 
         echo
         echo System Info:
@@ -183,13 +185,6 @@ references:
           if [ ! "$DISABLE_BROKEN_TSAN_TESTS" = true ] ; then ./test/cryfs/cryfs-test ; fi
           if [ ! "$DISABLE_BROKEN_TSAN_TESTS" = true ] ; then ./test/cryfs-cli/cryfs-cli-test ; fi
         fi
-  collect_coredump: &collect_coredump
-    run:
-      command: |
-        cat /proc/sys/kernel/core_pattern
-        mkdir -p /tmp/core_dumps
-        cp core.* /tmp/core_dumps
-      when: on_fail
   upload_coredump: &upload_coredump
     store_artifacts:
       path: /tmp/core_dumps
@@ -208,7 +203,6 @@ references:
     - <<: *build
     - <<: *build_post
     - <<: *test
-    - <<: *collect_coredump
     - <<: *upload_coredump
   enable_for_tags: &enable_for_tags
     filters:
