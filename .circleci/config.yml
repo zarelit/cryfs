@@ -81,6 +81,7 @@ references:
         ulimit -c unlimited
         mkdir -p /tmp/core_dumps
         echo "/tmp/core_dumps/%p_%s_%c_%P" | sudo tee /proc/sys/kernel/core_pattern
+        cat /proc/sys/kernel/core_pattern
 
         echo
         echo System Info:
@@ -174,6 +175,7 @@ references:
       name: Test
       no_output_timeout: 120m
       command: |
+        cat /proc/sys/kernel/core_pattern
         if "${RUN_TESTS}"; then
           cd cmake
           ./test/gitversion/gitversion-test
