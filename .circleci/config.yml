@@ -186,6 +186,7 @@ references:
   collect_coredump: &collect_coredump
     run:
       command: |
+        cat /proc/sys/kernel/core_pattern
         mkdir -p /tmp/core_dumps
         cp core.* /tmp/core_dumps
       when: on_fail
