@@ -80,6 +80,7 @@ references:
         # set up core dumps
         ulimit -c unlimited
         mkdir -p /tmp/core_dumps
+        cat /proc/sys/kernel/core_pattern
         echo "/tmp/core_dumps/%p_%s_%c_%P" | sudo tee /proc/sys/kernel/core_pattern
         cat /proc/sys/kernel/core_pattern
 
@@ -187,6 +188,12 @@ references:
           if [ ! "$DISABLE_BROKEN_TSAN_TESTS" = true ] ; then ./test/cryfs/cryfs-test ; fi
           if [ ! "$DISABLE_BROKEN_TSAN_TESTS" = true ] ; then ./test/cryfs-cli/cryfs-cli-test ; fi
         fi
+  show_dump: &shop_dump
+    run:
+      name: Show Core Dump
+      command: |
+        ls -l /tmp/core_dumps
+      when: on_fail
   upload_coredump: &upload_coredump
     store_artifacts:
       path: /tmp/core_dumps
