@@ -112,7 +112,7 @@ references:
         if [ ! -d "/tmp/boost_1_58_0" ]; then
           echo "Didn't find boost in cache. Downloading and building."
           wget -O /tmp/boost.tar.bz2 https://sourceforge.net/projects/boost/files/boost/1.58.0/boost_1_58_0.tar.bz2/download
-          if [ $(sha512sum /tmp/boost.tar.bz2 | awk '{print $1;}') == "1ce9871c3a2519682538a5f1331938b948123432d99aea0ce026958cbebd25d84019a3a28c452724b9693df98a8d1264bb2d93d2fee508453f8b42836e67481e" ]; then
+          if [ $(sha512sum /tmp/boost.tar.bz2 | awk '{print $1;}') == "7480ec713b0aa13f0ec990603e87e3b5c8d53f4411329b10fae37fc963b90aad12dbd9290a33c3669ae801e9012a68683eadff057591e9ca2ebcd22b1a67b5d1" ]; then
             echo Correct sha512sum
           else
             echo Wrong sha512sum
