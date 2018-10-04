@@ -79,6 +79,8 @@ references:
 
         # set up core dumps
         ulimit -c unlimited
+        echo Ulimit is:
+        ulimit -c
         mkdir -p /tmp/core_dumps
         cat /proc/sys/kernel/core_pattern
         echo "/tmp/core_dumps/%p_%s_%c_%P" | sudo tee /proc/sys/kernel/core_pattern
@@ -177,6 +179,7 @@ references:
       no_output_timeout: 120m
       command: |
         cat /proc/sys/kernel/core_pattern
+        ulimit -c
         if "${RUN_TESTS}"; then
           cd cmake
           ./test/gitversion/gitversion-test
