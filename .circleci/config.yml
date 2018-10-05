@@ -130,6 +130,7 @@ references:
         fi
         # Compile and install boost (if cached, this should be fast)
         cd /tmp/boost_1_58_0
+        echo CXXFLAGS are ${CXXFLAGS}
         sudo ./b2 toolset=${BUILD_TOOLSET} link=static cxxflags="${CXXFLAGS} -fPIC" -d0 -j$NUMCORES install
   build_pre: &build_pre
     restore_cache:
