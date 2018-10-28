@@ -75,8 +75,9 @@ public:
     }
 
 protected:
-    constexpr explicit IdValueType(underlying_type value) noexcept(noexcept(UnderlyingType(value)))
-    : value_(value) {
+    template<class U>
+    constexpr explicit IdValueType(U&& value) noexcept(noexcept(UnderlyingType(std::forward<U>(value))))
+    : value_(std::forward<U>(value)) {
         static_assert(std::is_base_of<IdValueType<ConcreteType, UnderlyingType>, ConcreteType>::value,
                       "CRTP violated. First template parameter of this class must be the concrete class.");
     }
