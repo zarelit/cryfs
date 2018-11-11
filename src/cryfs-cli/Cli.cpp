@@ -1,6 +1,7 @@
 #include "Cli.h"
 
 #include <blockstore/implementations/ondisk/OnDiskBlockStore2.h>
+#include <blockstore/implementations/s3/S3BlockStore2.h>
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
@@ -35,6 +36,7 @@ namespace bf = boost::filesystem;
 using namespace cpputils::logging;
 
 using blockstore::ondisk::OnDiskBlockStore2;
+using blockstore::s3::S3BlockStore2;
 using program_options::ProgramOptions;
 
 using cpputils::make_unique_ref;
@@ -222,7 +224,7 @@ namespace cryfs {
     void Cli::_runFilesystem(const ProgramOptions &options) {
         try {
           LocalStateDir localStateDir(Environment::localStateDir());
-          auto blockStore = make_unique_ref<OnDiskBlockStore2>(options.baseDir());
+          auto blockStore = make_unique_ref<S3BlockStore2>();
           auto config = _loadOrCreateConfig(options, localStateDir);
           CryDevice device(std::move(config.configFile), std::move(blockStore), std::move(localStateDir), config.myClientId,
                            options.allowIntegrityViolations(), config.configFile.config()->missingBlockIsIntegrityViolation());
@@ -248,11 +250,13 @@ namespace cryfs {
           fuse.run(options.mountDir(), options.fuseOptions());
         } catch (const CryfsException &e) {
             throw; // CryfsException is only thrown if setup goes wrong. Throw it through so that we get the correct process exit code.
-        } catch (const std::exception &e) {
+        } /*catch (const std::exception &e) {
             LOG(ERR, "Crashed: {}", e.what());
+            throw;
         } catch (...) {
             LOG(ERR, "Crashed");
-        }
+            throw;
+        }*/
     }
 
     void Cli::_sanityCheckFilesystem(CryDevice *device) {
