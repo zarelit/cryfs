@@ -133,7 +133,7 @@ private:
         _waitForBackgroundCounterToBeZero(localCounterIndex);
 
         // 6. Write to B
-        _callWriteFuncOnBackgroundInstance(writeFunc, localDataIndex);
+        return _callWriteFuncOnBackgroundInstance(writeFunc, localDataIndex);
     }
 
     template<class F>
